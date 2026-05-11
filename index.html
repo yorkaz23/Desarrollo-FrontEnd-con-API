@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportClub - Acceso</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        body { background: linear-gradient(135deg, #1e3a8a, #3b82f6); height: 100vh; }
+        .card { border-radius: 15px; border: none; }
+    </style>
+</head>
+<body class="d-flex align-items-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5 col-lg-4">
+                <div class="card shadow-lg p-4">
+                    <div class="text-center mb-4">
+                        <i class="bi bi-trophy-fill text-primary display-4"></i>
+                        <h2 class="fw-bold mt-2">SportClub</h2>
+                        <p class="text-muted">Inicia sesión en el sistema</p>
+                    </div>
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label class="form-label">Correo Electrónico</label>
+                            <input type="email" id="email" class="form-control" placeholder="admin@demo.cl">
+                            <div id="email-error" class="text-danger small mt-1"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Contraseña</label>
+                            <input type="password" id="password" class="form-control" placeholder="••••••••">
+                            <div id="pass-error" class="text-danger small mt-1"></div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">Entrar</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <small>¿Eres nuevo? <a href="registro.html" class="text-decoration-none">Crea una cuenta</a></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/auth.js"></script>
+</body>
+</html>
