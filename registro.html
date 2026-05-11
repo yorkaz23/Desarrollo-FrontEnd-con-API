@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>SportClub - Registro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-light d-flex align-items-center vh-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-sm p-4">
+                    <h2 class="text-center fw-bold text-primary mb-4">Crear Cuenta</h2>
+                    <form id="registerForm">
+                        <div class="mb-3">
+                            <label class="form-label">Nombre Completo</label>
+                            <input type="text" id="reg-name" class="form-control" required>
+                            <div id="name-error" class="text-danger small mt-1"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" id="reg-email" class="form-control" required>
+                            <div id="email-error" class="text-danger small mt-1"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Contraseña</label>
+                                <input type="password" id="reg-pass" class="form-control" required>
+                                <div id="pass-error" class="text-danger small mt-1"></div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Confirmar Contraseña</label>
+                                <input type="password" id="reg-confirm" class="form-control" required>
+                                <div id="confirm-error" class="text-danger small mt-1"></div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 fw-bold py-2">Registrarse</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <a href="index.html" class="text-decoration-none small">¿Ya tienes cuenta? Inicia sesión</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const full_name = document.getElementById('reg-name').value;
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-pass').value;
+            const confirm = document.getElementById('reg-confirm').value;
+            
+            // Validaciones Visuales (Requerimiento 2.1.2) [cite: 413]
+            let valid = true;
+            if (password.length < 8) { [cite: 69, 260]
+                document.getElementById('pass-error').innerText = "Mínimo 8 caracteres";
+                valid = false;
+            }
+            if (password !== confirm) { [cite: 92, 388]
+                document.getElementById('confirm-error').innerText = "Las contraseñas no coinciden";
+                valid = false;
+            }
+
+            if (!valid) return;
+
+            const response = await fetch('http://localhost:3000/api/auth/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ full_name, email, password })
+            });
+
+            if (response.ok) {
+                alert("Registro exitoso. Ahora puedes iniciar sesión.");
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+</html>
